@@ -54,19 +54,19 @@ def parse_option():
 
     # dataset and model
     parser.add_argument('--model_s', type=str, default='resnet12', choices=model_pool)
-    parser.add_argument('--dataset', type=str, default='miniImageNet', choices=['miniImageNet', 'tieredImageNet',
+    parser.add_argument('--dataset', type=str, default='CIFAR-FS', choices=['miniImageNet', 'tieredImageNet',
                                                                                 'CIFAR-FS', 'FC100'])
     parser.add_argument('--transform', type=str, default='A', choices=transforms_list)
 
     # path to teacher model
-    parser.add_argument('--path_t', type=str, default=None, help='teacher model snapshot')
+    parser.add_argument('--path_t', type=str, default='/home/michalislazarou/PhD/rfs/models/pretrained//resnet12_CIFAR-FS_lr_0.05_decay_0.0005_trans_D_trial_pretrain_2/resnet12_last.pth', help='teacher model snapshot')
 
     # distillation
     parser.add_argument('--distill', type=str, default='kd', choices=['kd', 'contrast', 'hint', 'attention'])
-    parser.add_argument('--trial', type=str, default='1', help='trial id')
+    parser.add_argument('--trial', type=str, default='student1', help='trial id')
 
-    parser.add_argument('-r', '--gamma', type=float, default=1, help='weight for classification')
-    parser.add_argument('-a', '--alpha', type=float, default=0, help='weight balance for KD')
+    parser.add_argument('-r', '--gamma', type=float, default=0.5, help='weight for classification')
+    parser.add_argument('-a', '--alpha', type=float, default=0.5, help='weight balance for KD')
     parser.add_argument('-b', '--beta', type=float, default=0, help='weight balance for other losses')
 
     # KL distillation
@@ -81,9 +81,9 @@ def parse_option():
     parser.add_argument('--cosine', action='store_true', help='using cosine annealing')
 
     # specify folder
-    parser.add_argument('--model_path', type=str, default='', help='path to save model')
+    parser.add_argument('--model_path', type=str, default='/home/michalislazarou/PhD/rfs/models/pretrained', help='path to save model')
     parser.add_argument('--tb_path', type=str, default='', help='path to tensorboard')
-    parser.add_argument('--data_root', type=str, default='', help='path to data root')
+    parser.add_argument('--data_root', type=str, default='/home/michalislazarou/PhD/rfs', help='path to data root')
 
     # setting for meta-learning
     parser.add_argument('--n_test_runs', type=int, default=600, metavar='N',

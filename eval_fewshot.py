@@ -25,7 +25,7 @@ def parse_option():
 
     # load pretrained model
     parser.add_argument('--model', type=str, default='resnet12', choices=model_pool)
-    parser.add_argument('--model_path', type=str, default=None, help='absolute path to .pth model')
+    parser.add_argument('--model_path', type=str, default='/home/michalislazarou/PhD/rfs/models/pretrained/S:resnet12_T:resnet12_miniImageNet_kd_r:0.5_a:0.5_b:0_trans_A_student1/resnet12_last.pth', help='absolute path to .pth model')
 
     # dataset
     parser.add_argument('--dataset', type=str, default='miniImageNet', choices=['miniImageNet', 'tieredImageNet',
@@ -33,10 +33,10 @@ def parse_option():
     parser.add_argument('--transform', type=str, default='A', choices=transforms_list)
 
     # specify data_root
-    parser.add_argument('--data_root', type=str, default='', help='path to data root')
+    parser.add_argument('--data_root', type=str, default='/home/michalislazarou/PhD/rfs', help='path to data root')
 
     # meta setting
-    parser.add_argument('--n_test_runs', type=int, default=600, metavar='N',
+    parser.add_argument('--n_test_runs', type=int, default=1000, metavar='N',
                         help='Number of test runs')
     parser.add_argument('--n_ways', type=int, default=5, metavar='N',
                         help='Number of classes for doing each classification run')
@@ -63,7 +63,7 @@ def parse_option():
         opt.data_root = './data/{}'.format(opt.dataset)
     else:
         opt.data_root = '{}/{}'.format(opt.data_root, opt.dataset)
-    opt.data_aug = True
+    opt.data_aug = False
 
     return opt
 

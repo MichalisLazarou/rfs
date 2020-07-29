@@ -48,7 +48,7 @@ def parse_option():
 
     # dataset
     parser.add_argument('--model', type=str, default='resnet12', choices=model_pool)
-    parser.add_argument('--dataset', type=str, default='miniImageNet', choices=['miniImageNet', 'tieredImageNet',
+    parser.add_argument('--dataset', type=str, default='CIFAR-FS', choices=['miniImageNet', 'tieredImageNet',
                                                                                 'CIFAR-FS', 'FC100'])
     parser.add_argument('--transform', type=str, default='A', choices=transforms_list)
     parser.add_argument('--use_trainval', action='store_true', help='use trainval set')
@@ -57,16 +57,16 @@ def parse_option():
     parser.add_argument('--cosine', action='store_true', help='using cosine annealing')
 
     # specify folder
-    parser.add_argument('--model_path', type=str, default='', help='path to save model')
+    parser.add_argument('--model_path', type=str, default='/home/michalislazarou/PhD/rfs/models/pretrained', help='path to save model')
     parser.add_argument('--tb_path', type=str, default='', help='path to tensorboard')
-    parser.add_argument('--data_root', type=str, default='', help='path to data root')
+    parser.add_argument('--data_root', type=str, default='/home/michalislazarou/PhD/rfs', help='path to data root')
 
     # meta setting
     parser.add_argument('--n_test_runs', type=int, default=600, metavar='N',
                         help='Number of test runs')
     parser.add_argument('--n_ways', type=int, default=5, metavar='N',
                         help='Number of classes for doing each classification run')
-    parser.add_argument('--n_shots', type=int, default=1, metavar='N',
+    parser.add_argument('--n_shots', type=int, default=5, metavar='N',
                         help='Number of shots in test')
     parser.add_argument('--n_queries', type=int, default=15, metavar='N',
                         help='Number of query in test')
@@ -75,7 +75,7 @@ def parse_option():
     parser.add_argument('--test_batch_size', type=int, default=1, metavar='test_batch_size',
                         help='Size of test batch)')
 
-    parser.add_argument('-t', '--trial', type=str, default='1', help='the experiment id')
+    parser.add_argument('-t', '--trial', type=str, default='pretrain_for_testing', help='the experiment id')
 
     opt = parser.parse_args()
 
